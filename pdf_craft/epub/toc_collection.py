@@ -84,7 +84,7 @@ class TocCollection:
                 return toc_item
             else:
                 raise RuntimeError(
-                    f"TOC item with ID {id} already exists in another branch."
+                    f"ID {id} の目次項目は既に別のブランチに存在します。"
                 )
         else:
             toc_item = TocItem(

@@ -38,4 +38,4 @@ class XMLReader(Generic[T]):
             try:
                 yield self._decode(root)
             except Exception as e:
-                raise ValueError(f"Failed to decode from: {xml_path}") from e
+                raise ValueError(f"{xml_path} からのデコードに失敗しました") from e

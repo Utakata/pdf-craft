@@ -45,7 +45,7 @@ def decode_expression_kind(kind_str: str) -> ExpressionKind:
     elif kind_str == "text":
         return ExpressionKind.TEXT
     else:
-        raise ValueError(f"Unknown expression kind: {kind_str}")
+        raise ValueError(f"未知の式タイプです: {kind_str}")
 
 
 def to_markdown_string(kind: ExpressionKind, content: str) -> str:

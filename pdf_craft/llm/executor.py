@@ -75,7 +75,7 @@ class LLMExecutor:
                         raise err
                     if logger is not None:
                         logger.warning(
-                            f"request failed with connection error, retrying... ({i + 1} times)"
+                            f"接続エラーによりリクエストが失敗しました。再試行中... ({i + 1} 回目)"
                         )
                     if self._retry_interval_seconds > 0.0 and i < self._retry_times:
                         sleep(self._retry_interval_seconds)
@@ -91,7 +91,7 @@ class LLMExecutor:
 
         if not did_success:
             if last_error is None:
-                raise RuntimeError("Request failed with unknown error")
+                raise RuntimeError("不明なエラーによりリクエストが失敗しました")
             else:
                 raise last_error
 
@@ -101,7 +101,7 @@ class LLMExecutor:
         if isinstance(input, str):
             return input
         if not isinstance(input, list):
-            raise ValueError(f"Unsupported input type: {type(input)}")
+            raise ValueError(f"サポートされていない入力タイプです: {type(input)}")
 
         buffer = StringIO()
         is_first = True

@@ -96,7 +96,7 @@ def _decode_layout(element: Element, order: int) -> PageLayout:
     det_str = element.get("det", "0,0,0,0")
     det_list = list(map(int, det_str.split(",")))
     if len(det_list) != 4:
-        raise ValueError(f"det must have 4 values, got {len(det_list)}")
+        raise ValueError(f"det は 4 つの値を持つ必要がありますが、{len(det_list)} 個でした")
     det = (det_list[0], det_list[1], det_list[2], det_list[3])
     text = element.text.strip() if element.text else ""
     hash_value = element.get("hash")

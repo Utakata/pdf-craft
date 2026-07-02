@@ -571,7 +571,7 @@ class _LLMAnalyser(Generic[_P, _R]):
                 response = self._llm.request(input=head_messages + tail_messages)
             except Exception as error:
                 raise LLMAnalysisError(
-                    f"LLM request failed at attempt {attempt + 1}: {error}"
+                    f"LLM リクエストが試行 {attempt + 1} 回目で失敗しました: {error}"
                 ) from error
 
             result, error_msg = self._validate(response, payload)
@@ -590,7 +590,7 @@ class _LLMAnalyser(Generic[_P, _R]):
 
         error_detail = f"Last error: {last_error}" if last_error else "Unknown error"
         raise LLMAnalysisError(
-            f"LLM analysis failed after {_MAX_RETRIES} attempts. {error_detail}"
+            f"LLM 解析が {_MAX_RETRIES} 回の試行後に失敗しました。{error_detail}"
         )
 
 

@@ -21,7 +21,7 @@ def pdf_pages_count(
     except PDFError:
         raise
     except Exception as error:
-        raise PDFError("Failed to parse PDF document.", page_index=None) from error
+        raise PDFError("PDF ドキュメントの解析に失敗しました。", page_index=None) from error
     finally:
         if document is not None:
             document.close()
@@ -49,7 +49,7 @@ class PageRefContext:
         except PDFError:
             raise
         except Exception as error:
-            raise PDFError("Failed to open PDF document.", page_index=None) from error
+            raise PDFError("PDF ドキュメントのオープンに失敗しました。", page_index=None) from error
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb) -> None:

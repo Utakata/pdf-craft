@@ -9,7 +9,7 @@ def avg(values: Iterable[float]) -> float:
         count += 1
 
     if count == 0:
-        raise ValueError("Cannot calculate average of empty sequence")
+        raise ValueError("空のシーケンスの平均を計算することはできません")
 
     return total / count
 
@@ -17,7 +17,7 @@ def avg(values: Iterable[float]) -> float:
 def median(values: Iterable[float]) -> float:
     values = list(values)
     if not values:
-        raise ValueError("Cannot calculate median of empty sequence")
+        raise ValueError("空のシーケンスの中央値を計算することはできません")
 
     sorted_values = sorted(values)
     n = len(sorted_values)

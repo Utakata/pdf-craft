@@ -19,7 +19,7 @@ def create_chapters_reader(chapters_path: Path) -> Callable[[], Iterable[Chapter
             try:
                 yield decode(root)
             except Exception as e:
-                raise ValueError(f"Failed to decode from: {head_path}") from e
+                raise ValueError(f"{head_path} からのデコードに失敗しました") from e
 
         yield from chapters.read()
 
