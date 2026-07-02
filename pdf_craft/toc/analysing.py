@@ -84,7 +84,7 @@ def _do_analyse_toc(
                 )
             except LLMAnalysisError as error:
                 print(
-                    f"LLM analysis toc failed, falling back to statistical method: {error}"
+                    f"LLM による目次の解析に失敗しました。統計的手法にフォールバックします: {error}"
                 )
 
         if ref2level is None:
@@ -102,7 +102,7 @@ def _do_analyse_toc(
                 ref2level = analyse_title_levels_by_llm(toc_llm, pages)
             except LLMAnalysisError as error:
                 print(
-                    f"LLM analysis title failed, falling back to statistical method: {error}"
+                    f"LLM によるタイトルの解析に失敗しました。統計的手法にフォールバックします: {error}"
                 )
 
         if ref2level is None:

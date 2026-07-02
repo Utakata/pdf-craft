@@ -98,7 +98,7 @@ def decode(element: Element) -> Chapter:
 
     body_el = element.find("body")
     if body_el is None:
-        raise ValueError("<chapter> missing required <body> element")
+        raise ValueError("<chapter> に必要な <body> 要素がありません")
 
     layouts: list[ParagraphLayout | AssetLayout] = []
     for child in list(body_el):
@@ -154,14 +154,14 @@ def _search_parts_in_chapter(chapter: Chapter):
 def _decode_asset(element: Element) -> AssetLayout:
     ref_attr = element.get("ref")
     if ref_attr is None:
-        raise ValueError("<asset> missing required attribute 'ref'")
+        raise ValueError("<asset> に必要な属性 'ref' がありません")
     if ref_attr not in ASSET_TAGS:
         raise ValueError(
             f"<asset> attribute 'ref' must be one of {ASSET_TAGS}, got: {ref_attr}"
         )
     page_index_attr = element.get("page_index")
     if page_index_attr is None:
-        raise ValueError("<asset> missing required attribute 'page_index'")
+        raise ValueError("<asset> に必要な属性 'page_index' がありません")
     try:
         page_index = int(page_index_attr)
     except ValueError as e:
@@ -171,14 +171,14 @@ def _decode_asset(element: Element) -> AssetLayout:
 
     det_str = element.get("det")
     if det_str is None:
-        raise ValueError("<asset> missing required attribute 'det'")
+        raise ValueError("<asset> に必要な属性 'det' がありません")
     det = _parse_det(det_str, context="<asset>@det")
 
     hash_value = element.get("hash")
 
     def decode_block_member(child: Element) -> BlockMember:
         if child.tag == "ref":
-            raise ValueError("<asset> cannot contain <ref> elements")
+            raise ValueError("<asset> に <ref> 要素を含めることはできません")
         elif child.tag == "inline_expr":
             kind_attr = child.get("kind")
             if kind_attr is None:
@@ -189,7 +189,7 @@ def _decode_asset(element: Element) -> AssetLayout:
             expr_text = child.text if child.text is not None else ""
             return InlineExpression(kind=kind, content=expr_text)
         else:
-            raise ValueError(f"<asset> contains unknown element: <{child.tag}>")
+            raise ValueError(f"<asset> に未知の要素が含まれています: <{child.tag}>")
 
     title_el = element.find("title")
     title = (
@@ -264,7 +264,7 @@ def _decode_paragraph(
 ) -> ParagraphLayout:
     ref_attr = element.get("ref")
     if ref_attr is None:
-        raise ValueError("<paragraph> missing required attribute 'ref'")
+        raise ValueError("<paragraph> に必要な属性 'ref' がありません")
 
     level_attr = element.get("level")
     level = int(level_attr) if level_attr is not None else -1
@@ -295,7 +295,7 @@ def _parse_det(det_str: str, context: str) -> tuple[int, int, int, int]:
             f"{context}: det must be comma-separated integers, got: {det_str}"
         ) from e
     if len(det_list) != 4:
-        raise ValueError(f"{context}: det must have 4 values, got {len(det_list)}")
+        raise ValueError(f"{context}: det は 4 つの値を持つ必要がありますが、{len(det_list)} 個でした")
     return (det_list[0], det_list[1], det_list[2], det_list[3])
 
 
@@ -332,7 +332,7 @@ def _decode_block_elements(
 
         det_str = block_el.get("det")
         if det_str is None:
-            raise ValueError(f"<{context_tag}><block> missing required attribute 'det'")
+            raise ValueError(f"<{context_tag}><block> に必要な属性 'det' がありません")
         det = _parse_det(det_str, context=f"<{context_tag}><block>@det")
 
         def decode_block_member(child: Element) -> BlockMember:
@@ -422,7 +422,7 @@ def _encode_block_member(part: BlockMember) -> Element:
         return ref_el
 
     else:
-        raise ValueError("Unknown BlockMember type")
+        raise ValueError("未知の BlockMember タイプです")
 
 
 def _encode_reference(ref: Reference) -> Element:
@@ -445,7 +445,7 @@ def _encode_reference(ref: Reference) -> Element:
 def _decode_reference(element: Element) -> Reference:
     ref_id = element.get("id")
     if ref_id is None:
-        raise ValueError("<references><ref> missing required attribute 'id'")
+        raise ValueError("<references><ref> に必要な属性 'id' がありません")
 
     try:
         parts = ref_id.split("-")
@@ -462,7 +462,7 @@ def _decode_reference(element: Element) -> Reference:
 
     mark_el = element.find("mark")
     if mark_el is None or mark_el.text is None:
-        raise ValueError("<references><ref> missing required <mark> element")
+        raise ValueError("<references><ref> に必要な <mark> 要素がありません")
     mark_text = mark_el.text
 
     from .mark import transform2mark

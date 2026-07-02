@@ -27,7 +27,7 @@ class TestLLMAnalyser(unittest.TestCase):
                 ),
             )
 
-        self.assertIn("LLM request failed at attempt 1", str(context.exception))
+        self.assertIn("LLM リクエストが試行 1 回目で失敗しました", str(context.exception))
         self.assertIsInstance(context.exception.__cause__, RuntimeError)
 
 

@@ -49,11 +49,11 @@ def encode(toc_info: TocInfo) -> Element:
 
 def decode(element: Element) -> TocInfo:
     if element.tag != "toc":
-        raise ValueError(f"Expected root tag 'toc', got '{element.tag}'")
+        raise ValueError(f"ルートタグ ''toc'' が期待されましたが、''{element.tag}'' が渡されました")
 
     page_indexes_str = element.get("page_indexes")
     if page_indexes_str is None:
-        raise ValueError("Missing 'page_indexes' attribute in toc")
+        raise ValueError("toc に 'page_indexes' 属性がありません")
 
     page_indexes = []
     if page_indexes_str:
@@ -61,7 +61,7 @@ def decode(element: Element) -> TocInfo:
 
     def decode_item(item: Element) -> Toc:
         if item.tag != "item":
-            raise ValueError(f"Expected tag 'item', got '{item.tag}'")
+            raise ValueError(f"タグ ''item'' が期待されましたが、''{item.tag}'' が渡されました")
 
         id_str = item.get("id")
         page_index_str = item.get("page_index")
@@ -69,13 +69,13 @@ def decode(element: Element) -> TocInfo:
         level_str = item.get("level")
 
         if id_str is None:
-            raise ValueError("Missing 'id' attribute in item")
+            raise ValueError("item に 'id' 属性がありません")
         if page_index_str is None:
-            raise ValueError("Missing 'page_index' attribute in item")
+            raise ValueError("item に 'page_index' 属性がありません")
         if order_str is None:
-            raise ValueError("Missing 'order' attribute in item")
+            raise ValueError("item に 'order' 属性がありません")
         if level_str is None:
-            raise ValueError("Missing 'level' attribute in item")
+            raise ValueError("item に 'level' 属性がありません")
 
         children = [decode_item(child) for child in item]
 

@@ -22,7 +22,7 @@ def read_xml(file_path: Path) -> Element:
     try:
         return fromstring(file_path.read_text(encoding="utf-8"))
     except Exception as error:
-        raise ValueError(f"Failed to parse XML file: {file_path}") from error
+        raise ValueError(f"XML ファイル {file_path} の解析に失敗しました") from error
 
 
 def save_xml(element: Element, file_path: Path) -> None:

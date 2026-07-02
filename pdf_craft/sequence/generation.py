@@ -162,12 +162,12 @@ def _extract_page_references(jointer: Jointer) -> Generator[References, None, No
 def _page_index_from_layout(layout: AssetLayout | ParagraphLayout) -> int:
     if isinstance(layout, ParagraphLayout):
         if not layout.blocks:
-            raise ValueError("ParagraphLayout has no blocks to get page index")
+            raise ValueError("ParagraphLayout にページインデックスを取得するためのブロックがありません")
         return layout.blocks[0].page_index
     elif isinstance(layout, AssetLayout):
         return layout.page_index
     else:
-        raise TypeError(f"Unknown layout type: {type(layout).__name__}")
+        raise TypeError(f"未知のレイアウトタイプです: {type(layout).__name__}")
 
 
 def _replace_mark_with_reference(references: References, block: BlockLayout):

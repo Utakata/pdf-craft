@@ -25,7 +25,7 @@ class Increasable:
             param = (param, param)
         if isinstance(param, (tuple, list)):
             if len(param) != 2:
-                raise ValueError(f"Expected a tuple of length 2, got {len(param)}")
+                raise ValueError(f"長さ 2 のタプルが期待されましたが、{len(param)} が渡されました")
             begin, end = param
             if isinstance(begin, int):
                 begin = float(begin)

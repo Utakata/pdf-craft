@@ -108,7 +108,7 @@ class Transform:
                 raise
             else:
                 raise RuntimeError(
-                    f"transform {pdf_path} to markdown failed"
+                    f"{pdf_path} の Markdown への変換に失敗しました"
                 ) from raw_error
 
     def transform_epub(
@@ -186,7 +186,7 @@ class Transform:
                 raise
             else:
                 raise RuntimeError(
-                    f"transform {pdf_path} to epub failed"
+                    f"{pdf_path} の EPUB への変換に失敗しました"
                 ) from raw_error
 
     def _extract_from_pdf(
@@ -274,7 +274,7 @@ class Transform:
                 modified=pdf_metadata.modified,
             )
         except PDFError:
-            print("Warning: Failed to extract PDF metadata.")
+            print("警告: PDF メタデータの抽出に失敗しました。")
             return None
 
     def _normalize_text_in_meta(self, text: str | None) -> str | None:

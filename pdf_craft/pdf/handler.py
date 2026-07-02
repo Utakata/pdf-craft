@@ -128,7 +128,7 @@ class DefaultPDFDocument:
             )
         except Exception as error:
             raise PDFError(
-                "Failed to extract PDF metadata.", page_index=None
+                "PDF メタデータの抽出に失敗しました。", page_index=None
             ) from error
 
     def page_size(self, page_index: int) -> tuple[float, float]:
@@ -139,7 +139,7 @@ class DefaultPDFDocument:
             return (width_inch, height_inch)
         except Exception as error:
             raise PDFError(
-                f"Failed to get page size for page {page_index}.", page_index=page_index
+                f"ページ {page_index} のサイズ取得に失敗しました。", page_index=page_index
             ) from error
 
     def render_page(self, page_index: int, dpi: int) -> Image.Image:
@@ -163,14 +163,14 @@ class DefaultPDFDocument:
         except PDFInfoNotInstalledError as error:
             if self._poppler_path:
                 error_message = (
-                    f"Poppler not found at specified path: {self._poppler_path}"
+                    f"指定されたパスに Poppler が見つかりませんでした: {self._poppler_path}"
                 )
             else:
-                error_message = "Poppler not found in PATH. Either not installed or PATH is not configured correctly."
+                error_message = "PATH 内に Poppler が見つかりませんでした。インストールされていないか、PATH が正しく設定されていません。"
             raise PDFError(error_message, page_index) from error
 
         if not images:
-            raise RuntimeError(f"Failed to render page {page_index}")
+            raise RuntimeError(f"ページ {page_index} のレンダリングに失敗しました")
 
         image = images[0]
         if image.mode != "RGB":

@@ -9,7 +9,7 @@
     <a href="https://github.com/oomol-lab/pdf-craft/blob/main/LICENSE" target="_blank"><img src="https://img.shields.io/github/license/oomol-lab/pdf-craft" alt="license" /></a>
   </p>
   <p><a href="https://trendshift.io/repositories/15538" target="_blank"><img src="https://trendshift.io/api/badge/repositories/15538" alt="oomol-lab%2Fpdf-craft | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a></p>
-  <p>English | <a href="./README_zh-CN.md">中文</a></p>
+  <p>English | <a href="./README_zh-CN.md">中文</a> | <a href="./README_ja.md">日本語</a></p>
 </div>
 
 ## Introduction

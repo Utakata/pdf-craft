@@ -20,13 +20,13 @@ def clean_analysing_folder():
 
     # 检查 analysing 目录是否存在
     if not analysing_dir.exists():
-        print(f"❌ 目录不存在: {analysing_dir}")
+        print(f"❌ ディレクトリが存在しません: {analysing_dir}")
         return
 
     # 需要保留的目录
 
-    print(f"📂 清理目录: {analysing_dir}")
-    print(f"🔒 保留文件: {', '.join(_KEEP_FILES)}")
+    print(f"📂 ディレクトリをクリーンアップ中: {analysing_dir}")
+    print(f"🔒 保持するファイル: {', '.join(_KEEP_FILES)}")
     print()
 
     deleted_count = 0
@@ -37,30 +37,30 @@ def clean_analysing_folder():
 
         # 跳过需要保留的目录
         if item_name in _KEEP_FILES:
-            print(f"✅ 保留: {item_name}")
+            print(f"✅ 保持: {item_name}")
             continue
 
         # 删除文件或目录
         try:
             if item.is_dir():
                 shutil.rmtree(item)
-                print(f"🗑️  删除目录: {item_name}")
+                print(f"🗑️  ディレクトリを削除: {item_name}")
             else:
                 item.unlink()
-                print(f"🗑️  删除文件: {item_name}")
+                print(f"🗑️  ファイルを削除: {item_name}")
             deleted_count += 1
         except Exception as e:
-            print(f"❌ 删除失败 {item_name}: {e}")
+            print(f"❌ {item_name} の削除に失敗しました: {e}")
 
     print()
-    print(f"✨ 清理完成! 共删除 {deleted_count} 个项目")
+    print(f"✨ クリーンアップ完了！合計 {deleted_count} 個の項目を削除しました")
 
 
 if __name__ == "__main__":
     # 解析命令行参数
-    parser = argparse.ArgumentParser(description="清理 analysing 目录")
+    parser = argparse.ArgumentParser(description="analysing ディレクトリをクリーンアップします")
     parser.add_argument(
-        "-y", "--yes", action="store_true", help="跳过确认提示，直接执行清理"
+        "-y", "--yes", action="store_true", help="確認プロンプトをスキップして、直接クリーンアップを実行します"
     )
     args = parser.parse_args()
 
@@ -68,8 +68,8 @@ if __name__ == "__main__":
     if args.yes:
         clean_analysing_folder()
     else:
-        response = input("⚠️  确认要清理 analysing 目录吗? (y/n): ")
+        response = input("⚠️  analysing ディレクトリをクリーンアップしてもよろしいですか？ (y/n): ")
         if response.lower() in ("y", "yes"):
             clean_analysing_folder()
         else:
-            print("❌ 操作已取消")
+            print("❌ 操作がキャンセルされました")

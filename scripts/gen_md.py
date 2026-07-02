@@ -30,7 +30,7 @@ def main() -> None:
             log_dir_path=analysing_dir_path / "logs",
         )
     else:
-        print("Warning: format.json not found, TOC LLM enhancement disabled.")
+        print("警告: format.json が見つかりません。目次の LLM 強化機能は無効です。")
 
     transform_markdown(
         pdf_path=assets_dir_path / pdf_file_name,
